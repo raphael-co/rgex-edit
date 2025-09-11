@@ -1,0 +1,10 @@
+{
+  "title": "Next TSX GitHub Template",
+  "intro": "Ready-to-use template with Tailwind, theming, i18n via middleware, SWR, and Recharts.",
+  "api": "Hello from the API",
+  "switchLang": "Language",
+  "light": "Light",
+  "dark": "Dark",
+  "system": "System",
+  "chartTitle": "Sample Line Chart"
+}

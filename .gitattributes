@@ -1,0 +1,4 @@
+* text=auto eol=lf
+
+# Linguist: treat TSX as TypeScript
+*.tsx linguist-language=TypeScript

@@ -1,0 +1,10 @@
+{
+  "title": "Modèle Next TSX pour GitHub",
+  "intro": "Template prêt à l'emploi avec Tailwind, theming, i18n via middleware, SWR et Recharts.",
+  "api": "Bonjour depuis l'API",
+  "switchLang": "Langue",
+  "light": "Clair",
+  "dark": "Sombre",
+  "system": "Système",
+  "chartTitle": "Exemple de graphique linéaire"
+}
