@@ -18,7 +18,7 @@ export default function LanguageSwitcher() {
       {LOCALES.map((lng) => (
         <button
           key={lng}
-          onClick={() => router.push(replaceLocaleInPath(pathname || "/", lng))}
+          onClick={() => router.push(replaceLocaleInPath(pathname || "/", lng) as any)}
           className="px-2 py-1 rounded hover:bg-black/5 dark:hover:bg-white/10"
         >
           {lng.toUpperCase()}

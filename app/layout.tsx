@@ -2,20 +2,27 @@ import "@/app/globals.css";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { LOCALES, type Locale } from "@/lib/i18n";
+import { cookies, headers } from "next/headers";
 
 export const metadata: Metadata = {
-  title: "github-next-tsx-template",
-  description: "Next.js 15 + TS GitHub-ready template"
+  title: "Regex editor",
+  description: "Online regex tester and editor"
 };
 
-export default function RootLayout({
-  children,
-  params: { locale }
+export default async function RootLayout({
+ children
 }: {
-  children: React.ReactNode;
-  params: { locale: Locale };
+ children: React.ReactNode;
 }) {
-  const lang = LOCALES.includes(locale) ? locale : "en";
+ const cookieLocale = (await cookies()).get("NEXT_LOCALE")?.value as Locale | undefined;
+ let lang: Locale = "en";
+ if (cookieLocale && LOCALES.includes(cookieLocale)) {
+   lang = cookieLocale;
+ } else {
+   const al = (await headers()).get("accept-language") || "";
+   const first = al.split(",")[0]?.trim().toLowerCase();
+   lang = (first?.startsWith("fr") ? "fr" : "en") as Locale;
+ }
 
   return (
     <html lang={lang} suppressHydrationWarning>
