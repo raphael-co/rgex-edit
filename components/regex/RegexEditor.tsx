@@ -28,7 +28,6 @@ export default function RegexEditor({ locale }: { locale: Locale }) {
   const [ms, setMs] = useState<number>(0);
   const [replaced, setReplaced] = useState<string>("");
 
-  // Import depuis l'URL si présent
   useEffect(() => {
     try {
       const qs = window.location.search.slice(1);
@@ -83,7 +82,6 @@ export default function RegexEditor({ locale }: { locale: Locale }) {
     setMs(Math.max(0, end - start));
     setRows(mrows);
 
-    // Remplacement
     try {
       const repl = replaceWith ?? "";
       const g2 = withGlobal(new RegExp(compiled.source, compiled.flags));
@@ -104,7 +102,6 @@ export default function RegexEditor({ locale }: { locale: Locale }) {
     [testText, matchesForHighlight]
   );
 
-  // Presets
   function addPreset(p: Preset) {
     const exists = userPresets.some((x) => x.id === p.id);
     const list = exists ? userPresets.map((x) => (x.id === p.id ? p : x)) : [...userPresets, p];

@@ -38,7 +38,7 @@ export default function PasswordTheme({
 
     setPattern(pat);
     setFlags("u");
-    setTest("Azerty123! ; weak ; TrèsLongMotDePasse99@ ; space ok?");
+    setTest("Azerty123!");
     setReplace("$&");
   }, [minLen, maxLen, needLower, needUpper, needDigit, needSpecial, allowSpaces, setPattern, setFlags, setTest, setReplace]);
 

@@ -48,5 +48,5 @@ export default function ThemePanel({
       <DateTheme locale={locale} setPattern={setPattern} setFlags={setFlags} setTest={setTest} setReplace={setReplace} />
     );
   }
-  return null; // custom => pas de panneau
+  return null;
 }

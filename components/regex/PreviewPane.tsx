@@ -23,11 +23,10 @@ export default function PreviewPane({
   const previewRef = useRef<HTMLDivElement>(null);
   const [wrap, setWrap] = useState<"pre" | "wrap">("wrap");
   const [fontSize, setFontSize] = useState<number>(14);
-  const [leftFirst, setLeftFirst] = useState<boolean>(true); // swap panes
+  const [leftFirst, setLeftFirst] = useState<boolean>(true);
   const [matchCount, setMatchCount] = useState<number>(0);
   const [activeIdx, setActiveIdx] = useState<number>(-1);
 
-  // Update matches count when HTML changes
   useEffect(() => {
     const root = previewRef.current;
     if (!root) return;
@@ -36,7 +35,6 @@ export default function PreviewPane({
     setActiveIdx(marks.length ? 0 : -1);
   }, [previewHTML]);
 
-  // Focus a specific <mark>
   useEffect(() => {
     const root = previewRef.current;
     if (!root || activeIdx < 0) return;
@@ -46,7 +44,6 @@ export default function PreviewPane({
     const el = marks[Math.min(activeIdx, marks.length - 1)];
     if (el) {
       el.classList.add("ring-2", "ring-black", "dark:ring-white", "rounded");
-      // Scroll into view, but don't jump too aggressively
       el.scrollIntoView({ block: "nearest", inline: "nearest" });
     }
   }, [activeIdx, previewHTML]);
@@ -75,13 +72,11 @@ export default function PreviewPane({
     URL.revokeObjectURL(url);
   }
 
-  // Compute classes from state
   const codeWrapCls = useMemo(
     () => (wrap === "wrap" ? "whitespace-pre-wrap break-words" : "whitespace-pre"),
     [wrap]
   );
 
-  // Panels (order can be swapped)
   const HighlightsPanel = (
     <div>
       <div className="flex items-center gap-2 mb-1">
@@ -169,7 +164,6 @@ export default function PreviewPane({
 
   return (
     <div className="rounded-2xl border p-4 space-y-3">
-      {/* Toolbar */}
       <div className="flex flex-wrap items-center gap-2">
         <div className="text-sm font-medium">{t(locale, "re_highlight")}</div>
 
@@ -191,7 +185,6 @@ export default function PreviewPane({
             {t(locale, "re_copy_output")}
           </button>
 
-          {/* Font size */}
           <div className="flex items-center gap-1">
             <button
               className="px-2 py-1 rounded-lg border"
@@ -212,7 +205,6 @@ export default function PreviewPane({
             </button>
           </div>
 
-          {/* Swap panes */}
           <button
             className="px-2 py-1 rounded-lg border"
             onClick={() => setLeftFirst((v) => !v)}
@@ -224,7 +216,6 @@ export default function PreviewPane({
         </div>
       </div>
 
-      {/* Panels */}
       <div className="grid gap-3 md:grid-cols-2">
         {leftFirst ? (
           <>
@@ -239,7 +230,6 @@ export default function PreviewPane({
         )}
       </div>
 
-      {/* Scoped styles for <mark> */}
       <style jsx>{`
         .regex-preview :global(mark) {
           background: rgba(250, 204, 21, 0.45); /* amber-300 @ ~45% */
