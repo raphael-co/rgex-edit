@@ -1,10 +1,10 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  reactStrictMode: true,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'standalone',
   experimental: {
-    typedRoutes: true
-  }
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
+  reactStrictMode: true,
 };
 
 export default nextConfig;
